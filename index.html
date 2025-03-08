@@ -1,73 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Story</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+        body { 
+            background-color: black; /* Black background */
+            color: white; /* White text color */
+            text-align: center; 
+            font-family: Arial, sans-serif; 
             margin: 0;
             padding: 0;
+            height: 100vh; /* Full viewport height */
             display: flex;
             flex-direction: column;
-            align-items: center;
+            justify-content: center; /* Vertically center content */
         }
 
-        .content {
-            width: 80%;
-            max-width: 900px;
-            margin-top: 20px;
+        a { 
+            color: cyan; /* Cyan link color */
+            text-decoration: none; 
+            font-size: 20px; 
+            display: block; 
+            margin: 20px; 
         }
 
-        .content h1 {
-            text-align: center;
-        }
-
-        .story-link {
-            display: block;
-            text-align: center;
-            font-size: 20px;
-            margin: 20px 0;
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .story-link:hover {
-            text-decoration: underline;
+        a:hover { 
+            text-decoration: underline; /* Underline effect when hovered */
         }
 
         footer {
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
-            position: fixed;
-            bottom: 0;
-            left: 0;
+            position: absolute;
+            bottom: 10px; /* Adjust to get it closer to the bottom */
+            left: 10px; /* Align it to the left */
+            font-size: 12px; /* Smaller text */
+            color: #00FFFF; /* Highlighted cyan text */
+            background-color: rgba(0, 0, 0, 0.7); /* Slight background to make it stand out */
+            padding: 5px;
+            cursor: pointer; /* Make the copyright clickable */
         }
 
-        footer p {
-            margin: 5px;
+        /* Modal styles */
+        #licenseModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 50px;
+            z-index: 1000;
         }
+
+        #licenseModalContent {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .close {
+            color: white;
+            font-size: 30px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .go-back-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #00FFFF;
+            border: none;
+            color: black;
+            cursor: pointer;
+        }
+
+        .go-back-btn:hover {
+            background-color: #008b8b;
+        }
+
     </style>
 </head>
-
 <body>
-    <div class="content">
-        <h1>Welcome to My Story</h1>
-        <a href="part1.html" class="story-link">Part 1: The Forgotten Legend</a>
-        <a href="part2.html" class="story-link">Part 2: The Fallen Tale</a>
+    <h1>My Story</h1>
+    <a href="part1.html">Part 1: The Forgotten Legend</a>
+    <a href="part2.html">Part 2: The Fallen Tale</a>
+
+    <footer id="copyrightFooter">
+        © Kiepey 2025. All rights reserved.
+    </footer>
+
+    <!-- Modal for Copyright/License Info -->
+    <div id="licenseModal">
+        <div id="licenseModalContent">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Full Copyright & Licensing Information</h2>
+            <p>This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.</p>
+            <p>Unauthorized copying, modification, or distribution of this story is strictly prohibited.</p>
+            <p>© Kiepey 2025. All rights reserved.</p>
+            <button class="go-back-btn" onclick="window.location.href='index.html';">Go Back</button>
+        </div>
     </div>
 
-    <footer>
-        <p>© Kiepey 2025. All rights reserved.</p>
-        <p>This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License.</p>
-        <p>Unauthorized copying, modification, or distribution of this story is strictly prohibited.</p>
-    </footer>
-</body>
+    <script>
+        // Get modal and elements
+        var modal = document.getElementById("licenseModal");
+        var footer = document.getElementById("copyrightFooter");
+        var closeModal = document.getElementById("closeModal");
 
+        // When the user clicks the copyright footer, open the modal
+        footer.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // Close modal if clicked outside the modal content
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
 </html>
